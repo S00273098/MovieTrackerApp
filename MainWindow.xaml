@@ -7,9 +7,20 @@
 
 
     <Grid>
-        <Label Content="Welcome to Movie Tracker" HorizontalAlignment="Center" Margin="0,140,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="26"/>
-        <Button Content="Want to Watch" HorizontalAlignment="Center" Margin="0,245,0,0" VerticalAlignment="Top" Height="60" Width="275" FontWeight="Bold" FontSize="15"/>
-        <Button Content="Watching" HorizontalAlignment="Center" Margin="0,345,0,0" VerticalAlignment="Top" Height="60" Width="275" FontWeight="Bold" FontSize="15"/>
-        <Button Content="Watched" HorizontalAlignment="Center" Margin="0,445,0,0" VerticalAlignment="Top" Height="60" Width="275" FontWeight="Bold" FontSize="15"/>
+        <TabControl x:Name="MainTabs" >
+
+            <TabItem Header="Want To Watch" Width="120" FontSize="20">
+                
+            </TabItem>
+
+            <TabItem Header="Watching" Width="120" FontSize="20">
+                
+            </TabItem>
+
+            <TabItem Header="Watched" Width="120" FontSize="20">
+                
+            </TabItem>
+
+        </TabControl>
     </Grid>
 </Window>

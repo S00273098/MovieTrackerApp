@@ -24,5 +24,10 @@ namespace MovieTrackerApp
         {
             InitializeComponent();
         }
+        public MainWindow(int selectedTabIndex)
+        {
+            InitializeComponent();
+            MainTabs.SelectedIndex = selectedTabIndex;
+        }
     }
 }
