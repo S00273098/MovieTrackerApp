@@ -3,24 +3,160 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Style="{StaticResource MaterialDesignWindow}"
-        Title="MainWindow" Height="800" Width="360">
+        Title="MainWindow" Height="800" Width="360"
+        MinWidth="320" MinHeight="640"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="TabPanel">
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
 
+        <Style TargetType="Button" x:Key="TouchButton">
+            <Setter Property="MinHeight" Value="56"/>
+            <Setter Property="MinWidth" Value="56"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </Window.Resources>
 
-    <Grid>
-        <TabControl x:Name="MainTabs" >
+    <Grid Background="DimGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />    
+            <RowDefinition Height="*" />       
+            <RowDefinition Height="Auto" />    
+        </Grid.RowDefinitions>
 
-            <TabItem Header="Want To Watch" Width="120" FontSize="20">
-                
+        <Border Grid.Row="0" Background="#333" Padding="10">
+            <WrapPanel Orientation="Horizontal" ItemHeight="44" ItemWidth="Auto" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                <TextBlock Text="Type:" VerticalAlignment="Center" Margin="4,0" Foreground="White" FontWeight="SemiBold"/>
+                <ComboBox x:Name="TypeComboBox" Width="120" Height="40" SelectedIndex="0" Margin="4,0">
+                    <ComboBoxItem>All</ComboBoxItem>
+                    <ComboBoxItem>Movie</ComboBoxItem>
+                    <ComboBoxItem>Series</ComboBoxItem>
+                    <ComboBoxItem>Documentary</ComboBoxItem>
+                </ComboBox>
+
+                <TextBlock Text="Genre:" VerticalAlignment="Center" Margin="8,0,4,0" Foreground="White" FontWeight="SemiBold"/>
+                <ComboBox x:Name="GenreComboBox" Width="120" Height="40" SelectedIndex="0" Margin="4,0">
+                    <ComboBoxItem>All</ComboBoxItem>
+                    <ComboBoxItem>Action</ComboBoxItem>
+                    <ComboBoxItem>Comedy</ComboBoxItem>
+                    <ComboBoxItem>Drama</ComboBoxItem>
+                    <ComboBoxItem>Horror</ComboBoxItem>
+                </ComboBox>
+
+                <TextBlock Text="Sort:" VerticalAlignment="Center" Margin="8,0,4,0" Foreground="White" FontWeight="SemiBold"/>
+                <ComboBox x:Name="SortByComboBox" Width="140" Height="40" SelectedIndex="0" Margin="4,0">
+                    <ComboBoxItem>Relevance</ComboBoxItem>
+                    <ComboBoxItem>Title</ComboBoxItem>
+                    <ComboBoxItem>Release Date</ComboBoxItem>
+                    <ComboBoxItem>Rating</ComboBoxItem>
+                </ComboBox>
+            </WrapPanel>
+        </Border>
+
+        <TabControl x:Name="MainTabs" Grid.Row="1" Margin="8">
+            <TabItem x:Name="TabWantToWatch">
+                <ScrollViewer>
+                    <StackPanel Margin="6">
+                        <ListView>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#222" Padding="12" Margin="6" CornerRadius="6">
+                                        <StackPanel>
+                                            <TextBlock Text="Movie Title" FontWeight="Bold" Foreground="White" FontSize="16"/>
+                                            <TextBlock Text="Year • Genre • Rating" Foreground="#CCC" FontSize="12"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                            <ListViewItem />
+                            <ListViewItem />
+                            <ListViewItem />
+                        </ListView>
+                    </StackPanel>
+                </ScrollViewer>
             </TabItem>
 
-            <TabItem Header="Watching" Width="120" FontSize="20">
-                
+            <TabItem x:Name="TabWatching">
+                <ScrollViewer>
+                    <StackPanel Margin="6">
+                        <ListView>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#222" Padding="12" Margin="6" CornerRadius="6">
+                                        <StackPanel>
+                                            <TextBlock Text="Watching Title" FontWeight="Bold" Foreground="White" FontSize="16"/>
+                                            <TextBlock Text="Progress • Genre" Foreground="#CCC" FontSize="12"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                            <ListViewItem />
+                            <ListViewItem />
+                        </ListView>
+                    </StackPanel>
+                </ScrollViewer>
             </TabItem>
 
-            <TabItem Header="Watched" Width="120" FontSize="20">
-                
-            </TabItem>
+            <TabItem x:Name="TabWatched">
+                <ScrollViewer>
+                    <StackPanel Margin="6">
+                        <ListView>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#222" Padding="12" Margin="6" CornerRadius="6">
+                                        <StackPanel>
+                                            <TextBlock Text="Watched Title" FontWeight="Bold" Foreground="White" FontSize="16"/>
+                                            <TextBlock Text="Watched Date • Rating" Foreground="#CCC" FontSize="12"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
 
+                            <ListViewItem />
+                            <ListViewItem />
+                            <ListViewItem />
+                        </ListView>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
         </TabControl>
+
+        <Border Grid.Row="2" Background="#222" Padding="6">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" x:Name="BtnWantToWatch" Style="{StaticResource TouchButton}" Click="BtnWantToWatch_Click"
+                        ToolTip="Want to Watch" HorizontalAlignment="Stretch" VerticalAlignment="Center" >
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock FontSize="26" Text="🔖" HorizontalAlignment="Center"/>
+                        <TextBlock FontSize="12" Foreground="White" HorizontalAlignment="Center">Want</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="1" x:Name="BtnWatching" Style="{StaticResource TouchButton}" Click="BtnWatching_Click"
+                        ToolTip="Watching" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock FontSize="26" Text="▶️" HorizontalAlignment="Center"/>
+                        <TextBlock FontSize="12" Foreground="White" HorizontalAlignment="Center">Watching</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="2" x:Name="BtnWatched" Style="{StaticResource TouchButton}" Click="BtnWatched_Click"
+                        ToolTip="Watched" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock FontSize="26" Text="✅" HorizontalAlignment="Center"/>
+                        <TextBlock FontSize="12" Foreground="White" HorizontalAlignment="Center">Watched</TextBlock>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

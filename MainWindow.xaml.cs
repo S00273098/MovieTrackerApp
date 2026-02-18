@@ -24,10 +24,26 @@ namespace MovieTrackerApp
         {
             InitializeComponent();
         }
+
         public MainWindow(int selectedTabIndex)
         {
             InitializeComponent();
             MainTabs.SelectedIndex = selectedTabIndex;
+        }
+
+        private void BtnWantToWatch_Click(object sender, RoutedEventArgs e)
+        {
+            MainTabs.SelectedIndex = 0;
+        }
+
+        private void BtnWatching_Click(object sender, RoutedEventArgs e)
+        {
+            MainTabs.SelectedIndex = 1;
+        }
+
+        private void BtnWatched_Click(object sender, RoutedEventArgs e)
+        {
+            MainTabs.SelectedIndex = 2;
         }
     }
 }
