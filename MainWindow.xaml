@@ -55,25 +55,27 @@
             </WrapPanel>
         </Border>
 
-        <TabControl x:Name="MainTabs" Grid.Row="1" Margin="8">
+        <TabControl x:Name="MainTabs" Grid.Row="1" Margin="8"
+            SelectedIndex="{Binding SelectedTabIndex}">
             <TabItem x:Name="TabWantToWatch">
                 <ScrollViewer>
                     <StackPanel Margin="6">
-                        <ListView>
+                        <ListView ItemsSource="{Binding WantToWatch}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Background="#222" Padding="12" Margin="6" CornerRadius="6">
+                                    <Border Background="#222" Padding="10" Margin="5" CornerRadius="6">
                                         <StackPanel>
-                                            <TextBlock Text="Movie Title" FontWeight="Bold" Foreground="White" FontSize="16"/>
-                                            <TextBlock Text="Year • Genre • Rating" Foreground="#CCC" FontSize="12"/>
+                                            <TextBlock Text="{Binding Title}" 
+                               Foreground="White" 
+                               FontSize="16"
+                               FontWeight="Bold"/>
+
+                                            <TextBlock Text="{Binding Genre}" 
+                               Foreground="LightGray"/>
                                         </StackPanel>
                                     </Border>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
-
-                            <ListViewItem />
-                            <ListViewItem />
-                            <ListViewItem />
                         </ListView>
                     </StackPanel>
                 </ScrollViewer>
@@ -82,20 +84,17 @@
             <TabItem x:Name="TabWatching">
                 <ScrollViewer>
                     <StackPanel Margin="6">
-                        <ListView>
+                        <ListView ItemsSource="{Binding Watching}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Background="#222" Padding="12" Margin="6" CornerRadius="6">
+                                    <Border Background="#222" Padding="10" Margin="5" CornerRadius="6">
                                         <StackPanel>
-                                            <TextBlock Text="Watching Title" FontWeight="Bold" Foreground="White" FontSize="16"/>
-                                            <TextBlock Text="Progress • Genre" Foreground="#CCC" FontSize="12"/>
+                                            <TextBlock Text="{Binding Title}" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding Genre}" Foreground="LightGray"/>
                                         </StackPanel>
                                     </Border>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
-
-                            <ListViewItem />
-                            <ListViewItem />
                         </ListView>
                     </StackPanel>
                 </ScrollViewer>
@@ -104,21 +103,17 @@
             <TabItem x:Name="TabWatched">
                 <ScrollViewer>
                     <StackPanel Margin="6">
-                        <ListView>
+                        <ListView ItemsSource="{Binding Watched}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Background="#222" Padding="12" Margin="6" CornerRadius="6">
+                                    <Border Background="#222" Padding="10" Margin="5" CornerRadius="6">
                                         <StackPanel>
-                                            <TextBlock Text="Watched Title" FontWeight="Bold" Foreground="White" FontSize="16"/>
-                                            <TextBlock Text="Watched Date • Rating" Foreground="#CCC" FontSize="12"/>
+                                            <TextBlock Text="{Binding Title}" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding Genre}" Foreground="LightGray"/>
                                         </StackPanel>
                                     </Border>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
-
-                            <ListViewItem />
-                            <ListViewItem />
-                            <ListViewItem />
                         </ListView>
                     </StackPanel>
                 </ScrollViewer>

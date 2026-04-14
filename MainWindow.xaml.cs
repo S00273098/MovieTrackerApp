@@ -1,5 +1,10 @@
-﻿using System;
+﻿using MovieTrackerApp.Commands;
+using MovieTrackerApp.Models;
+using MovieTrackerApp.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,30 +25,26 @@ namespace MovieTrackerApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-
         public MainWindow(int selectedTabIndex)
         {
             InitializeComponent();
-            MainTabs.SelectedIndex = selectedTabIndex;
+            DataContext = new MainViewModel();
         }
 
+        private MainViewModel ViewModel => (MainViewModel)DataContext;
         private void BtnWantToWatch_Click(object sender, RoutedEventArgs e)
         {
-            MainTabs.SelectedIndex = 0;
+            ViewModel.SelectedTabIndex = 0;
         }
 
         private void BtnWatching_Click(object sender, RoutedEventArgs e)
         {
-            MainTabs.SelectedIndex = 1;
+            ViewModel.SelectedTabIndex = 1;
         }
 
         private void BtnWatched_Click(object sender, RoutedEventArgs e)
         {
-            MainTabs.SelectedIndex = 2;
+            ViewModel.SelectedTabIndex = 2;
         }
     }
 }
